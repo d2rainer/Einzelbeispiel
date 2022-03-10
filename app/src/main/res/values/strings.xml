@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SE2_Einzelbeispiel</string>
+    <string name="bitte_gib_deine_matrikelnummer_ein">Bitte gib deine Matrikelnummer ein:</string>
+    <string name="senden">Senden</string>
+    <string name="an_server_senden">An Server senden:</string>
+</resources>

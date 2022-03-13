@@ -1,3 +1,5 @@
+// 09855612, Dagmar Rainer
+
 package com.example.se2_einzelbeispiel;
 
 import java.io.*;
@@ -11,10 +13,6 @@ public class TCPClient extends Thread {
         this.matrikelnr = matrikelnr;
     }
 
-    public static void main(String[] args) {
-
-    }
-
     @Override
     public void run() {
         try {
@@ -22,17 +20,13 @@ public class TCPClient extends Thread {
             Socket clientSocket = new Socket("se2-isys.aau.at", 53212);
             // erzeugen output stream zum socket
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            // erzeugen input stream
-            //BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
             // erzeugen input stream vom socket
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            //matrikelnr = inFromUser.readLine();
             // Zeile auslesen an Server
             outToServer.writeBytes(matrikelnr + '\n');
             // Zeile einlesen vom Server
             answer = inFromServer.readLine();
-            //System.out.println("Answer from server: " + answer);
 
             clientSocket.close();
 
@@ -41,7 +35,7 @@ public class TCPClient extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            answer = "failure in connection: " + e;
+            answer = "Fehler bei Verbindung: " + e;
         }
     }
 

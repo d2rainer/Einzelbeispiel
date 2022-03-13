@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText matrikelnr;
     Button send;
     TextView answer;
+    Button calculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         matrikelnr = findViewById(R.id.editTextNumber);
         send = findViewById(R.id.buttonSenden);
         answer = findViewById(R.id.editTextAntwort);
+        calculate = findViewById(R.id.buttonBerechnen);
 
         send.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 TCPClient client = new TCPClient(matrikelnr.getText().toString());
@@ -35,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
                     e.getStackTrace();
                 }
                 answer.setText(client.getAnswer());
+            }
+        });
+
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int number = Integer.parseInt(String.valueOf(matrikelnr));
+                int sum = 0;
+
+                while (0 != number) {
+                    sum = sum + (number % 10);
+                    number = number / 10;
+                }
+                System.out.println(Integer.toBinaryString(sum));
             }
         });
     }
